@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { WishItem } from 'src/shared/models/wishItem';
 
 @Component({
   selector: 'wish-list-item',
@@ -10,6 +9,11 @@ export class WishListItemComponent {
   @Input() wishText!: string;
   @Input() fullFilled!: boolean;
   @Output() fullFilledChange = new EventEmitter<boolean>();
+
+  get cssClasses() {
+    // return this.fullFilled ? ['strikeOut', 'text-muted'] : [];
+    return {'strikeOut text-muted': this.fullFilled};
+  }
 
   toggleFullFilled() {
     this.fullFilled = !this.fullFilled;
